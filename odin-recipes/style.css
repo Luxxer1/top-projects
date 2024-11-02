@@ -1,0 +1,32 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  background-color: darkred;
+  color: bisque;
+}
+
+h2 {
+  background-color: bisque;
+  color: darkred;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+a {
+  color: darkred;
+  font-weight: bold;
+}
+
+.container {
+  margin: auto;
+  text-align: center;
+}
+
+.recipe-list {
+  list-style: none;
+}
