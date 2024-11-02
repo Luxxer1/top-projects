@@ -1,0 +1,177 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;;
+}
+
+ul {
+  list-style: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.header-content,
+.hero-content,
+.information-content,
+.quote-content,
+.action-content {
+  width: 900px;
+  margin: auto;
+}
+
+.header {
+  background-color: #1F2937;
+  padding: 15px;
+  color: #F9FAF8;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-links > ul {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-content {
+  display: flex;
+  gap: 25px;
+  margin: 80px auto;
+}
+
+.hero-left {
+  flex: 1 1 50%;
+}
+
+.hero-left > h1 {
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.hero-left > p {
+  font-size: 18px;
+  color: #E5E7EB;
+}
+
+.hero-left > button {
+  margin-top: 10px;
+  padding: 10px 30px;
+  color: white;
+  font-weight: bold;
+  background-color: #3882F6;
+  border: none;
+  border-radius: 8px;
+}
+
+.hero-right {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #989a9e;
+}
+
+.information-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 40px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.information-content > h2 {
+  font-size: 36px;
+  font-weight: 900;
+  color: #1F2937;
+}
+
+.boxes {
+  display: flex;
+  width: 80%;
+  gap: 30px;
+}
+
+.box-img {
+  width: 150px;
+  height: 150px;
+  border: 3px solid #3882F6;
+  border-radius: 8px;
+  margin-bottom: 0.5em;
+}
+
+.quote {
+  background-color: #E5E7EB;
+  padding: 100px;
+}
+
+.quote-content {
+  display: flex;
+  flex-direction: column;
+  color: #1F2937;
+  width: 800px;
+}
+
+.quote-content > p {
+  font-size: 36px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.quote-content > span {
+  font-weight: bold;
+  font-size: 1em;
+  align-self: end;
+}
+
+.action-content {
+  box-sizing: border-box;
+  background: #3882F6;
+  margin: 70px auto;
+  padding: 40px 100px;
+  color: #F9FAF8;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-left > p:first-of-type {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.action-right > button {
+  padding: 10px 30px;
+  color: white;
+  font-weight: bold;
+  background-color: #3882F6;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+.footer {
+  background-color: #1F2937;
+  padding: 30px;
+  text-align: center;
+  color: #F9FAF8;
+}
