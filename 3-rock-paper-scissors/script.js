@@ -14,7 +14,7 @@
 //
 // function playGame plays 5 rounds and calls playRound
 
-const R = "rock", S = "scissors", P = "papper";
+const R = "rock", S = "scissors", P = "paper";
 
 const choices = document.querySelectorAll("button");
 const score = document.querySelector("#score");
