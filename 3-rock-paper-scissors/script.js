@@ -16,7 +16,16 @@
 
 const R = "rock", S = "scissors", P = "papper";
 
+const choices = document.querySelectorAll("button");
+const score = document.querySelector("#score");
+const result = document.querySelector("#result");
+
 let computerScore = 0, humanScore = 0;
+let gameOver = false;
+
+choices.forEach(choice => {
+  choice.addEventListener("click", playGame);
+});
 
 function getComputerChoice() {
   randomNumber = Math.round(Math.random() * (3 - 1) + 1);
@@ -35,49 +44,54 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let humanChoice;
-  while (true) {
-    humanChoice = prompt("pick an option [rock, papper, scissors]: ").toLowerCase();
-    if (humanChoice === R ||
-        humanChoice === S ||
-        humanChoice === P) {
-      return humanChoice;
+function getHumanChoice(e) {
+  return e.target.id;
+}
+
+function playRound(e) {
+  const computerChoice = getComputerChoice();
+  const humanChoice = getHumanChoice(e);
+
+  if (!gameOver) {
+    if (computerChoice === humanChoice) {
+      result.textContent = `Draw! Human and Computer chose ${humanChoice}`;
+    } else if ((computerChoice === R && humanChoice === S) ||
+              (computerChoice === P && humanChoice === R) ||
+              (computerChoice === S && humanChoice === P)) {
+      computerScore += 1;
+      result.textContent = `You lose the round! ${computerChoice} beats ${humanChoice}`;
+    } else {
+      humanScore += 1;
+      result.textContent = `You win the round! ${humanChoice} beats ${computerChoice}`;
     }
   }
+
+  if (checkGameOver()) {
+    printGameResult();
+    choices.forEach(choice => {
+      choice.removeEventListener("click", playGame);
+    });
+  }
 }
 
-function playRound(getComputerChoice, getHumanChoice) {
-  const computerChoice = getComputerChoice();
-  const humanChoice = getHumanChoice();
+function playGame(e) {
+  playRound(e);
+  score.innerHTML = `Human Score: ${humanScore}<br>`;
+  score.innerHTML += `Computer Score: ${computerScore}<br>`;
+  score.innerHTML += "----------------------";
+}
 
-  if (computerChoice === humanChoice) {
-    console.log(`Draw! Human and Computer chose ${humanChoice}`)  
-  } else if ((computerChoice === R && humanChoice === S) ||
-             (computerChoice === P && humanChoice === R) ||
-             (computerChoice === S && humanChoice === P)) {
-    computerScore += 1;
-    console.log(`You lose the round! ${computerChoice} beats ${humanChoice}`)
+function printGameResult() {
+  result.innerHTML += "<br>----------------------<br>";
+  if (computerScore > humanScore) {
+    result.innerHTML += `GAME OVER!`;
   } else {
-    humanScore += 1;
-    console.log(`You win the round! ${humanChoice} beats ${computerChoice}`)
+    result.innerHTML += `CONGRATULATIONS, YOU WIN!!`;
   }
 }
 
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    playRound(getComputerChoice, getHumanChoice);
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-    console.log("----------------------");
-  }
-
-  if (computerScore === humanScore) {
-    console.log(`DRAW!`)
-  } else if (computerScore > humanScore) {
-    console.log(`YOU LOSE!`)
-  } else {
-    console.log(`CONGRATULATIONS, YOU WIN!!`)
+function checkGameOver() {
+  if (humanScore == 5 || computerScore == 5) {
+    return true;
   }
 }
-
