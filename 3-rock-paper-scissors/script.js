@@ -1,21 +1,4 @@
-// getComputerChoice() randomly return
-// "rock papper or scissors"
-//
-// getHumanChoice return one VALID humanChoice
-// case insensitive
-//
-// create 2 variables humanScore and computerScore globaly
-// initialized with 0
-//
-// function playRound takes 2 arguments: humanChoice and
-// computer humanChoice
-// console.log string representing the round winner
-// increment winner count
-//
-// function playGame plays 5 rounds and calls playRound
-
 const R = "rock", S = "scissors", P = "paper";
-
 const choices = document.querySelectorAll("button");
 const score = document.querySelector("#score");
 const result = document.querySelector("#result");
