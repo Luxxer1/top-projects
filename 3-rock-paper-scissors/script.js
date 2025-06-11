@@ -1,13 +1,13 @@
-const R = "rock", S = "scissors", P = "paper";
 const choices = document.querySelectorAll("button");
 const score = document.querySelector("#score");
 const result = document.querySelector("#result");
 
-let computerScore = 0, humanScore = 0;
+let computerScore = 0,
+  humanScore = 0;
 let gameOver = false;
 
-choices.forEach(choice => {
-  choice.addEventListener("click", playGame);
+choices.forEach((choice) => {
+  choice.addEventListener("click", "");
 });
 
 function getComputerChoice() {
@@ -38,9 +38,11 @@ function playRound(e) {
   if (!gameOver) {
     if (computerChoice === humanChoice) {
       result.textContent = `Draw! Human and Computer chose ${humanChoice}`;
-    } else if ((computerChoice === R && humanChoice === S) ||
-              (computerChoice === P && humanChoice === R) ||
-              (computerChoice === S && humanChoice === P)) {
+    } else if (
+      (computerChoice === R && humanChoice === S) ||
+      (computerChoice === P && humanChoice === R) ||
+      (computerChoice === S && humanChoice === P)
+    ) {
       computerScore += 1;
       result.textContent = `You lose the round! ${computerChoice} beats ${humanChoice}`;
     } else {
@@ -51,7 +53,7 @@ function playRound(e) {
 
   if (checkGameOver()) {
     printGameResult();
-    choices.forEach(choice => {
+    choices.forEach((choice) => {
       choice.removeEventListener("click", playGame);
     });
   }
