@@ -1,52 +1,40 @@
-const humanChoice = document
-  .getElementById("human")
-  .getElementsByClassName("choice")[0];
+const human = document.getElementById("human");
+const humanChoice = human.getElementsByClassName("choice")[0];
+const humanScoreEl = human.getElementsByClassName("score")[0];
 
-const computerChoice = document
-  .getElementById("computer")
-  .getElementsByClassName("choice")[0];
-
-const choices = document.querySelectorAll(".choices");
-const start = document.querySelector("#start");
-start.addEventListener("click", startGame);
+const computer = document.getElementById("computer");
+const computerChoice = computer.getElementsByClassName("choice")[0];
+const computerScoreEl = computer.getElementsByClassName("score")[0];
 
 let computerScore = 0,
   humanScore = 0;
-let R = "rock",
-  P = "paper",
-  S = "scissors";
-let gameOver = false;
+let options = ["rock", "paper", "scissors"];
+let gameStarted = false;
 
+const choices = document.querySelectorAll(".choices");
 choices.forEach((choice) => {
   choice.addEventListener("click", getHumanChoice);
 });
 
+const start = document.querySelector("#start");
+start.addEventListener("click", "");
+
 function getComputerChoice() {
-  randomNumber = Math.round(Math.random() * (3 - 1) + 1);
-  switch (randomNumber) {
-    case 1:
-      computerChoice.innerHTML = `<img src="/assets/${R}.png" alt="${R}">`;
-      return R;
+  const randomNumber = Math.round(Math.random() * (3 - 1));
+  const randomChoice = options[randomNumber];
 
-    case 2:
-      computerChoice.innerHTML = `<img src="/assets/${P}.png" alt="${P}">`;
-      return P;
+  // computerChoice.innerHTML = `<img src="/assets/${randomChoice}.png" alt="${randomChoice}">`;
 
-    case 3:
-      computerChoice.innerHTML = `<img src="/assets/${S}.png" alt="${S}">`;
-      return S;
-
-    default:
-      return console.error("Error, math randomly went wrong");
-  }
+  return randomChoice;
 }
 
-function startGame() {}
-
 function getHumanChoice(e) {
-  humanChoice.innerHTML = `<img src="/assets/${e.target.id}.png" alt="${e.target.id}">`;
-  getComputerChoice();
-  return e.target.id;
+  // humanChoice.innerHTML = `<img src="/assets/${e.target.id}.png" alt="${e.target.id}">`;
+  if (gameStarted) {
+    return e.target.id;
+  } else {
+    alert("Please, start the game.");
+  }
 }
 
 function playRound(e) {
