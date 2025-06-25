@@ -27,6 +27,7 @@ h1 {
   margin: auto;
   padding: 20px;
   display: flex;
+  /* testar flex direction aqui */
   justify-content: space-evenly;
   align-items: center;
   font-family: "Doto", monospace;

@@ -1,45 +1,46 @@
 const human = document.getElementById("human");
-const humanChoice = human.getElementsByClassName("choice")[0];
+const humanChoiceEl = human.getElementsByClassName("choice")[0];
 const humanScoreEl = human.getElementsByClassName("score")[0];
 
 const computer = document.getElementById("computer");
-const computerChoice = computer.getElementsByClassName("choice")[0];
+const computerChoiceEl = computer.getElementsByClassName("choice")[0];
 const computerScoreEl = computer.getElementsByClassName("score")[0];
 
 let computerScore = 0,
   humanScore = 0;
 let options = ["rock", "paper", "scissors"];
 let gameStarted = false;
+let gameOver = true;
 
 const choices = document.querySelectorAll(".choices");
 choices.forEach((choice) => {
-  choice.addEventListener("click", getHumanChoice);
+  choice.addEventListener("click", playRound);
 });
 
 const start = document.querySelector("#start");
-start.addEventListener("click", "");
+start.addEventListener("click", startGame);
 
-function getComputerChoice() {
-  const randomNumber = Math.round(Math.random() * (3 - 1));
-  const randomChoice = options[randomNumber];
-
-  // computerChoice.innerHTML = `<img src="/assets/${randomChoice}.png" alt="${randomChoice}">`;
-
-  return randomChoice;
-}
-
-function getHumanChoice(e) {
-  // humanChoice.innerHTML = `<img src="/assets/${e.target.id}.png" alt="${e.target.id}">`;
-  if (gameStarted) {
-    return e.target.id;
-  } else {
-    alert("Please, start the game.");
+function startGame() {
+  if (!gameStarted) {
+    gameStarted = true;
+    gameOver = false;
+    computerScore = 0;
+    computerScoreEl.innerHTML = computerScore;
+    humanScore = 0;
+    humanScoreEl.innerHTML = humanScore;
   }
 }
 
 function playRound(e) {
+  if (!gameStarted) {
+    alert("Please, start the game.");
+    return;
+  }
+
   const computerChoice = getComputerChoice();
   const humanChoice = getHumanChoice(e);
+
+  printChoices(computerChoice, humanChoice);
 
   if (!gameOver) {
     if (computerChoice === humanChoice) {
@@ -56,33 +57,28 @@ function playRound(e) {
       result.textContent = `You win the round! ${humanChoice} beats ${computerChoice}`;
     }
   }
-
-  if (checkGameOver()) {
-    printGameResult();
-    choices.forEach((choice) => {
-      choice.removeEventListener("click", playGame);
-    });
-  }
 }
 
-function playGame(e) {
-  playRound(e);
-  score.innerHTML = `Human Score: ${humanScore}<br>`;
-  score.innerHTML += `Computer Score: ${computerScore}<br>`;
-  score.innerHTML += "----------------------";
+function getComputerChoice() {
+  const randomNumber = Math.round(Math.random() * (3 - 1));
+
+  return options[randomNumber];
 }
 
-function printGameResult() {
-  result.innerHTML += "<br>----------------------<br>";
-  if (computerScore > humanScore) {
-    result.innerHTML += `GAME OVER!`;
-  } else {
-    result.innerHTML += `CONGRATULATIONS, YOU WIN!!`;
-  }
+function getHumanChoice(e) {
+  return e.target.id;
+}
+
+function printChoices(computerChoice, humanChoice) {
+  computerChoiceEl.innerHTML = `<img src="/assets/${computerChoice}.png" alt="${computerChoice}">`;
+
+  humanChoiceEl.innerHTML = `<img src="/assets/${humanChoice}.png" alt="${humanChoice}">`;
 }
 
 function checkGameOver() {
   if (humanScore == 5 || computerScore == 5) {
     return true;
+  } else {
+    return false;
   }
 }
