@@ -34,11 +34,11 @@ h1 {
 }
 
 #round > div {
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100px;
+  margin-bottom: 25px;
 }
 
 .choice {
@@ -46,6 +46,12 @@ h1 {
   height: 80px;
   border: 1px solid salmon;
   border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.choice > img {
+  width: 100%;
 }
 
 #buttonChoices {
@@ -63,10 +69,35 @@ h1 {
   background-color: salmon;
   color: white;
   font-weight: 800;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 #buttonChoices > button:hover {
   cursor: pointer;
   background-color: rgb(255, 95, 95);
+}
+
+#buttonChoices > button:active {
+  transform: translateY(2px);
+}
+
+#start {
+  border-radius: 6px;
+  border: none;
+  padding: 10px;
+  width: 120px;
+  margin: 30px auto 50px;
+  background-color: #397fe0;
+  color: white;
+  font-weight: 900;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#start:hover {
+  cursor: pointer;
+  background-color: #2165db;
+}
+
+#start:active {
+  transform: translateY(2px);
 }
