@@ -32,6 +32,8 @@ function startGame() {
     computerScoreEl.innerHTML = computerScore;
     humanScore = 0;
     humanScoreEl.innerHTML = humanScore;
+    roundResultEl.innerHTML = "&#8199;";
+    start.innerHTML = "Playing...";
     printRound();
   }
 }
@@ -73,6 +75,11 @@ function playRound(e) {
 
     printRound();
     gameOver = checkGameOver();
+    if (gameOver) {
+      gameStarted = false;
+      start.innerHTML = "Start";
+      printWinner();
+    }
   }
 }
 
@@ -108,5 +115,13 @@ function checkGameOver() {
     return true;
   } else {
     return false;
+  }
+}
+
+function printWinner() {
+  if (humanScore > computerScore) {
+    roundCountEl.innerHTML = "Congratulations! You win!";
+  } else {
+    roundCountEl.innerHTML = "You Lose! Computer Wins!";
   }
 }
