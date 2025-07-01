@@ -1,97 +1,127 @@
-// getComputerChoice() randomly return
-// "rock papper or scissors"
-//
-// getHumanChoice return one VALID humanChoice
-// case insensitive
-//
-// create 2 variables humanScore and computerScore globaly
-// initialized with 0
-//
-// function playRound takes 2 arguments: humanChoice and
-// computer humanChoice
-// console.log string representing the round winner
-// increment winner count
-//
-// function playGame plays 5 rounds and calls playRound
+const human = document.getElementById("human");
+const humanChoiceEl = human.getElementsByClassName("choice")[0];
+const humanScoreEl = human.getElementsByClassName("score")[0];
 
-const R = "rock", S = "scissors", P = "papper";
+const computer = document.getElementById("computer");
+const computerChoiceEl = computer.getElementsByClassName("choice")[0];
+const computerScoreEl = computer.getElementsByClassName("score")[0];
 
-const choices = document.querySelectorAll("button");
-const score = document.querySelector("#score");
-const result = document.querySelector("#result");
+const roundCountEl = document.getElementById("roundCount");
+const roundResultEl = document.getElementById("roundResult");
 
-let computerScore = 0, humanScore = 0;
-let gameOver = false;
+let computerScore, humanScore, roundCount;
+let options = ["rock", "paper", "scissors"];
+const [R, P, S] = options;
+let gameStarted = false;
+let gameOver = true;
 
-choices.forEach(choice => {
-  choice.addEventListener("click", playGame);
+const choices = document.querySelectorAll(".choices");
+choices.forEach((choice) => {
+  choice.addEventListener("click", playRound);
 });
 
-function getComputerChoice() {
-  randomNumber = Math.round(Math.random() * (3 - 1) + 1);
-  switch (randomNumber) {
-    case 1:
-      return R;
+const start = document.querySelector("#start");
+start.addEventListener("click", startGame);
 
-    case 2:
-      return S;
-
-    case 3:
-      return P;
-
-    default:
-      return console.error("Error, math randomly went wrong");
+function startGame() {
+  if (!gameStarted) {
+    gameStarted = true;
+    gameOver = false;
+    roundCount = 0;
+    computerScore = 0;
+    computerScoreEl.innerHTML = computerScore;
+    humanScore = 0;
+    humanScoreEl.innerHTML = humanScore;
+    roundResultEl.innerHTML = "&#8199;";
+    start.innerHTML = "Playing...";
+    printRound();
   }
+}
+
+function playRound(e) {
+  if (!gameStarted) {
+    alert("Please, start the game.");
+    return;
+  } else if (gameOver) {
+    alert("Game is Over!");
+    return;
+  }
+
+  const computerChoice = getComputerChoice();
+  const humanChoice = getHumanChoice(e);
+
+  printChoices(computerChoice, humanChoice);
+
+  if (!gameOver) {
+    if (computerChoice === humanChoice) {
+      roundResultEl.textContent = `Draw! Human and Computer chose ${capitalize(
+        humanChoice
+      )}`;
+    } else if (
+      (computerChoice === R && humanChoice === S) ||
+      (computerChoice === P && humanChoice === R) ||
+      (computerChoice === S && humanChoice === P)
+    ) {
+      computerScore += 1;
+      roundResultEl.textContent = `You lost the round! ${capitalize(
+        computerChoice
+      )} beats ${capitalize(humanChoice)}`;
+    } else {
+      humanScore += 1;
+      roundResultEl.textContent = `You won the round! ${capitalize(
+        humanChoice
+      )} beats ${capitalize(computerChoice)}`;
+    }
+
+    printRound();
+    gameOver = checkGameOver();
+    if (gameOver) {
+      gameStarted = false;
+      start.innerHTML = "Start";
+      printWinner();
+    }
+  }
+}
+
+function getComputerChoice() {
+  const randomNumber = Math.round(Math.random() * (3 - 1));
+
+  return options[randomNumber];
 }
 
 function getHumanChoice(e) {
   return e.target.id;
 }
 
-function playRound(e) {
-  const computerChoice = getComputerChoice();
-  const humanChoice = getHumanChoice(e);
+function printChoices(computerChoice, humanChoice) {
+  computerChoiceEl.innerHTML = `<img src="/assets/${computerChoice}.png" alt="${computerChoice}">`;
 
-  if (!gameOver) {
-    if (computerChoice === humanChoice) {
-      result.textContent = `Draw! Human and Computer chose ${humanChoice}`;
-    } else if ((computerChoice === R && humanChoice === S) ||
-              (computerChoice === P && humanChoice === R) ||
-              (computerChoice === S && humanChoice === P)) {
-      computerScore += 1;
-      result.textContent = `You lose the round! ${computerChoice} beats ${humanChoice}`;
-    } else {
-      humanScore += 1;
-      result.textContent = `You win the round! ${humanChoice} beats ${computerChoice}`;
-    }
-  }
-
-  if (checkGameOver()) {
-    printGameResult();
-    choices.forEach(choice => {
-      choice.removeEventListener("click", playGame);
-    });
-  }
+  humanChoiceEl.innerHTML = `<img src="/assets/${humanChoice}.png" alt="${humanChoice}">`;
 }
 
-function playGame(e) {
-  playRound(e);
-  score.innerHTML = `Human Score: ${humanScore}<br>`;
-  score.innerHTML += `Computer Score: ${computerScore}<br>`;
-  score.innerHTML += "----------------------";
+function printRound() {
+  roundCount += 1;
+  roundCountEl.innerText = `Round ${roundCount}`;
+  computerScoreEl.innerHTML = computerScore;
+  humanScoreEl.innerText = humanScore;
 }
 
-function printGameResult() {
-  result.innerHTML += "<br>----------------------<br>";
-  if (computerScore > humanScore) {
-    result.innerHTML += `GAME OVER!`;
-  } else {
-    result.innerHTML += `CONGRATULATIONS, YOU WIN!!`;
-  }
+function capitalize(val) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
 function checkGameOver() {
   if (humanScore == 5 || computerScore == 5) {
     return true;
+  } else {
+    return false;
+  }
+}
+
+function printWinner() {
+  if (humanScore > computerScore) {
+    roundCountEl.innerHTML = "Congratulations! You win!";
+  } else {
+    roundCountEl.innerHTML = "You Lose! Computer Wins!";
   }
 }

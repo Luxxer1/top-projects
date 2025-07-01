@@ -1,0 +1,107 @@
+body {
+  background-color: salmon;
+}
+
+#container {
+  background-color: white;
+  border-radius: 10px;
+  width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Rampart One", sans;
+}
+
+.x {
+  font-size: 40px;
+}
+
+#round {
+  border: 2px dashed #0b3d91;
+  border-radius: 10px;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+}
+
+#roundContainer {
+  display: flex;
+  /* testar flex direction aqui */
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: "Doto", monospace;
+  font-weight: 900;
+}
+
+#roundContainer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  margin-bottom: 25px;
+}
+
+.choice {
+  width: 80px;
+  height: 80px;
+  border: 1px solid salmon;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.choice > img {
+  width: 100%;
+}
+
+#buttonChoices {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#buttonChoices > button {
+  border-radius: 6px;
+  border: none;
+  padding: 5px;
+  width: 75px;
+  background-color: salmon;
+  color: white;
+  font-weight: 800;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#buttonChoices > button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 95, 95);
+}
+
+#buttonChoices > button:active {
+  transform: translateY(2px);
+}
+
+#start {
+  border-radius: 6px;
+  border: none;
+  padding: 10px;
+  width: 120px;
+  margin: 30px auto 50px;
+  background-color: #397fe0;
+  color: white;
+  font-weight: 900;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#start:hover {
+  cursor: pointer;
+  background-color: #2165db;
+}
+
+#start:active {
+  transform: translateY(2px);
+}

@@ -1,17 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rock Papper Scissors</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body> 
-    <h1>Rock Papper Scissors</h1>
-    <button id="rock">Rock</button>
-    <button id="papper">Papper</button>
-    <button id="scissors">Scissors</button>
-    <div id="score"></div>
-    <div id="result"></div>
+  <body>
+    <div id="container">
+      <h1>Rock-Paper-Scissors</h1>
+
+      <div>
+        <h2 id="roundCount">Waiting...</h2>
+      </div>
+
+      <div id="round">
+        <h4 id="roundResult">&#8199;</h4>
+
+        <div id="roundContainer">
+          <div id="human">
+            <p>Human <span class="score">&#8199;</span></p>
+            <div class="choice"></div>
+          </div>
+
+          <h2 class="x">✘</h2>
+
+          <div id="computer">
+            <p>Computer <span class="score">&#8199;</span></p>
+            <div class="choice"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="buttonChoices">
+        <button id="rock" class="choices">Rock</button>
+        <button id="paper" class="choices">Paper</button>
+        <button id="scissors" class="choices">Scissors</button>
+      </div>
+
+      <button id="start">Start</button>
+    </div>
 
     <script src="script.js"></script>
   </body>
