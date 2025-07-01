@@ -94,9 +94,9 @@ function getHumanChoice(e) {
 }
 
 function printChoices(computerChoice, humanChoice) {
-  computerChoiceEl.innerHTML = `<img src="/assets/${computerChoice}.png" alt="${computerChoice}">`;
+  computerChoiceEl.innerHTML = `<img src="assets/${computerChoice}.png" alt="${computerChoice}">`;
 
-  humanChoiceEl.innerHTML = `<img src="/assets/${humanChoice}.png" alt="${humanChoice}">`;
+  humanChoiceEl.innerHTML = `<img src="assets/${humanChoice}.png" alt="${humanChoice}">`;
 }
 
 function printRound() {
