@@ -1,5 +1,14 @@
 #container {
-  width: 900px;
+  width: 960px;
   margin: auto;
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  flex-shrink: 0;
 }
