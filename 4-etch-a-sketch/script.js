@@ -1,17 +1,21 @@
-let container = document.getElementById("container");
+const container = document.getElementById("container");
 
 const createGrid = (function () {
   return function (number) {
     for (let i = 1; i <= number; i++) {
-      const square = document.createElement("div");
-
-      square.setAttribute("class", "square");
-      square.addEventListener("mouseover", changeSquareBackground.bind(null, square));
-
-      container.appendChild(square);
+      createSquare(); 
     }
   };
 })();
+
+const createSquare = () => {
+  const square = document.createElement("div");
+
+  square.setAttribute("class", "square");
+  square.addEventListener("mouseover", changeSquareBackground.bind(null, square));
+
+  container.appendChild(square);
+}
 
 const changeSquareBackground = (square) => {
   const red = getRandomRgbValue();
