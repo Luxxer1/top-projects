@@ -16,7 +16,7 @@ button {
   font-size: 18px;
   padding: 8px;
   background-color: rgb(114, 198, 250);
-  color: rgba(255, 255, 255, 0.769);
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 6px;
   transition: box-shadow 0.2s;

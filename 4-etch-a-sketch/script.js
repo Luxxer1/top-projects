@@ -25,7 +25,7 @@ etch.addEventListener("click", () => {
 
 clear.addEventListener("click", () => {
   clearGrid();
-  console.log(grid);
+
   createGrid(grid);
 });
 
