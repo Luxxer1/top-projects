@@ -1,5 +1,10 @@
 const display = document.getElementById("display");
 const calculatorButtons = document.querySelectorAll("button");
+calculatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    refreshDisplay(button);
+  });
+});
 
 const add = (n1, n2) => n1 + n2;
 const subtract = (n1, n2) => n1 - n2;
@@ -24,3 +29,20 @@ const operate = (operator, n1, n2) => {
       break;
   }
 };
+
+function refreshDisplay(button) {
+  switch (button.className) {
+    case "number":
+      display.innerHTML += button.textContent;
+      break;
+
+    case "operator":
+      break;
+
+    case "equal":
+      break;
+
+    case "clear":
+      break;
+  }
+}
