@@ -43,6 +43,7 @@ function refreshDisplay(button) {
       break;
 
     case "clear":
+      display.innerHTML = "";
       break;
   }
 }
