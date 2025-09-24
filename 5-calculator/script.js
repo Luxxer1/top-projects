@@ -28,6 +28,7 @@ const operate = (operate, n1, n2) => {
 function refreshDisplay(button) {
   switch (button.className) {
     case "number":
+      display.innerHTML += button.innerText;
       break;
 
     case "operator":
@@ -37,8 +38,8 @@ function refreshDisplay(button) {
       break;
 
     case "clear":
-      result.innerHTML += "";
-      display.innerHTML += "";
+      result.innerHTML = "";
+      display.innerHTML = "";
       break;
   }
   // display.innerHTML += button.textContent;
