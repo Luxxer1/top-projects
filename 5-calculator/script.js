@@ -1,6 +1,9 @@
 import { add, subtract, multiply, divide } from "./calculator.js";
 import { printNumber, clearHtml } from "./display.js";
 
+const FIRSTNUMBER = "firstNumber";
+const SECONDNUMBER = "secondNumber";
+
 const calculator = {
   firstNumber: undefined,
   secondNumber: undefined,
@@ -8,12 +11,12 @@ const calculator = {
   result: undefined,
 };
 
-const result = document.getElementById("result");
-const display = document.getElementById("display");
+const evaluationDisplay = document.getElementById("evaluationDisplay");
+const digitDisplay = document.getElementById("digitDisplay");
 const buttons = document.querySelectorAll("#calculator > button");
 buttons.forEach((button) =>
   button.addEventListener("click", () => {
-    refreshDisplay(button);
+    refreshDigitDisplay(button);
   })
 );
 
@@ -34,12 +37,13 @@ const operate = (operate, firstNumber, secondNumber) => {
 };
 
 const clearCalculator = () => {
-  clearHtml(display, result);
+  clearHtml(digitDisplay, evaluationDisplay);
   for (let key in calculator) calculator[key] = undefined;
 };
 
 const printResult = () => {
   let stringResult = "";
+  result;
 
   if (calculator.result) {
     stringResult = calculator.result;
@@ -51,18 +55,14 @@ const printResult = () => {
     }
   }
 
-  clearHtml(display);
+  clearHtml(digitDisplay);
   result.innerHTML = stringResult;
 };
 
-const hasNumberTyped = () => !!display.innerHTML;
+const hasNumberTyped = () => !!digitDisplay.innerHTML;
 
-const defineFirstNumber = () => {
-  calculator.firstNumber = +display.innerText;
-};
-
-const defineSecondNumber = () => {
-  calculator.secondNumber = +display.innerText;
+const defineNumber = (propName) => {
+  calculator[propName] = +digitDisplay.innerText;
 };
 
 const defineOperation = (operator) => {
@@ -74,16 +74,11 @@ const defineOperation = (operator) => {
 
   if (!calculator.operator && hasNumberTyped()) {
     calculator.operator = operator;
-    defineFirstNumber();
+    defineNumber(FIRSTNUMBER);
     return;
   } else if (calculator.operator && hasNumberTyped()) {
-    defineSecondNumber();
-    calculator.result = operate(
-      operator,
-      calculator.firstNumber,
-      calculator.secondNumber
-    );
-    // evaluate()
+    defineNumber(SECONDNUMBER);
+    calculator.result = calculate();
   }
 };
 
@@ -103,6 +98,10 @@ const defineOperation = (operator) => {
 //   }
 // };
 
+// const calculate = () => {
+//   const result
+// }
+
 const evaluate = (button) => {
   switch (button.className) {
     case "operator":
@@ -111,21 +110,21 @@ const evaluate = (button) => {
       break;
 
     case "evaluate":
-      if (!result.innerText || !display.innerText) {
-        display.innerText = "Error, something is missing";
+      if (!result.innerText || !digitDisplay.innerText) {
+        digitDisplay.innerText = "Error, something is missing";
       } else {
         let [num1, op] = result.innerText.split(" ");
-        calculator.secondNumber = +display.innerText;
+        calculator.secondNumber = +digitDisplay.innerText;
         calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
         calculator.result = calculator.firstNumber;
         result.innerText = calculator.firstNumber;
-        clearHtml(display);
+        clearHtml(digitDisplay);
       }
       break;
   }
 };
 
-function refreshDisplay(button) {
+function refreshDigitDisplay(button) {
   switch (button.className) {
     case "clear":
       clearCalculator();
