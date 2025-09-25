@@ -2,8 +2,8 @@ button:hover {
   cursor: pointer;
 }
 
-#display,
-#result {
+#digitDisplay,
+#evaluationDisplay {
   border: 1px solid black;
   width: 200px;
   height: 30px;
