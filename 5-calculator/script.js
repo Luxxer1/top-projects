@@ -11,6 +11,7 @@ const calculator = {
   result: undefined,
 };
 
+const resultDisplay = document.getElementById("resultDisplay");
 const evaluationDisplay = document.getElementById("evaluationDisplay");
 const digitDisplay = document.getElementById("digitDisplay");
 const buttons = document.querySelectorAll("#calculator > button");
@@ -41,7 +42,7 @@ const clearCalculator = () => {
   for (let key in calculator) calculator[key] = undefined;
 };
 
-const printResult = () => {
+const printEvaluation = () => {
   let stringResult = "";
 
   if (calculator.result) {
@@ -81,31 +82,19 @@ const defineOperation = (operator) => {
   }
 };
 
-//   if (resultCalculated) {
-//     resultCalculated = undefined;
-//     calculator.operator = operator;
-//     calculator.firstNumber = +display.innerText;
-//     result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-//     clearHtml(display);
-//   } else {
-//     calculator.secondNumber = +display.innerText;
-//     let [num1, op] = result.innerText.split(" ");
-//     calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
-//     calculator.operator = operator;
-//     result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-//     clearHtml(display);
-//   }
-// };
-
-// const calculate = () => {
-//   const result
-// }
+const calculate = () => {
+  const result = operate(
+    calculate.operator,
+    calculate.firstNumber,
+    calculate.secondNumber
+  );
+};
 
 const evaluate = (button) => {
   switch (button.className) {
     case "operator":
       defineOperation(button.innerText);
-      printResult();
+      printEvaluation();
       break;
 
     case "evaluate":
