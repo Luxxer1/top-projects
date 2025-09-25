@@ -41,9 +41,13 @@ const clearCalculator = () => {
 const printResult = () => {
   let stringResult = "";
 
-  for (let key in calculator) {
-    if (calculator[key]) {
-      stringResult += calculator[key] + " ";
+  if (calculator.result) {
+    stringResult = calculator.result;
+  } else {
+    for (let key in calculator) {
+      if (calculator[key]) {
+        stringResult += calculator[key] + " ";
+      }
     }
   }
 
@@ -57,6 +61,10 @@ const defineFirstNumber = () => {
   calculator.firstNumber = +display.innerText;
 };
 
+const defineSecondNumber = () => {
+  calculator.secondNumber = +display.innerText;
+};
+
 const defineOperation = (operator) => {
   // Change operator sign
   if (calculator.firstNumber && !hasNumberTyped()) {
@@ -68,6 +76,14 @@ const defineOperation = (operator) => {
     calculator.operator = operator;
     defineFirstNumber();
     return;
+  } else if (calculator.operator && hasNumberTyped()) {
+    defineSecondNumber();
+    calculator.result = operate(
+      operator,
+      calculator.firstNumber,
+      calculator.secondNumber
+    );
+    // evaluate()
   }
 };
 
