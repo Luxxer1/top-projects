@@ -35,52 +35,66 @@ const operate = (operate, firstNumber, secondNumber) => {
 
 const clearCalculator = () => {
   clearHtml(display, result);
-  for (key in calculator) calculator[key] = undefined;
+  for (let key in calculator) calculator[key] = undefined;
 };
 
-const checkOperator = (button) => {
+const printResult = () => {
+  let stringResult = "";
+
+  for (let key in calculator) {
+    if (calculator[key]) {
+      stringResult += calculator[key] + " ";
+    }
+  }
+
+  clearHtml(display);
+  result.innerHTML = stringResult;
+};
+
+const defineFirstNumber = () => {
+  calculator.firstNumber = +display.innerText;
+};
+
+const defineOperator = (operator) => {
   if (!calculator.operator) {
+    calculator.operator = operator;
+    defineFirstNumber();
+    return;
+  }
+
+  // Change operator sign
+  if (!display.innerText) {
+    calculator.operator = operator;
+    printResult();
+    clearHtml(display);
+    return;
+  }
+
+  if (resultCalculated) {
+    resultCalculated = undefined;
+    calculator.operator = operator;
     calculator.firstNumber = +display.innerText;
-    calculator.operator = button.innerText;
     result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
     clearHtml(display);
   } else {
-    if (display.innerText == "") {
-      calculator.operator = button.innerText;
-      result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-      clearHtml(display);
-    } else {
-      if (resultCalculated) {
-        resultCalculated = undefined;
-        calculator.operator = button.innerText;
-        calculator.firstNumber = +display.innerText;
-        result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-        clearHtml(display);
-      } else {
-        calculator.secondNumber = +display.innerText;
-        let [num1, op] = result.innerText.split(" ");
-        calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
-        operator = button.innerText;
-        result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-        clearHtml(display);
-      }
-    }
+    calculator.secondNumber = +display.innerText;
+    let [num1, op] = result.innerText.split(" ");
+    calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
+    calculator.operator = operator;
+    result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+    clearHtml(display);
   }
 };
 
-function refreshDisplay(button) {
+const evaluate = (button) => {
   switch (button.className) {
-    case "number":
-      printNumber(button.innerText);
-      break;
-
     case "operator":
-      checkOperator(button);
-
+      defineOperator(button.innerText);
+      printResult();
       break;
 
     case "evaluate":
-      if (result.innerText == "" || display.innerText == "") {
+      if (!result.innerText || !display.innerText) {
         display.innerText = "Error, something is missing";
       } else {
         let [num1, op] = result.innerText.split(" ");
@@ -91,9 +105,21 @@ function refreshDisplay(button) {
         clearHtml(display);
       }
       break;
+  }
+};
 
+function refreshDisplay(button) {
+  switch (button.className) {
     case "clear":
       clearCalculator();
+      break;
+
+    case "number":
+      printNumber(button.innerText);
+      break;
+
+    case "operator" || "evaluate":
+      evaluate(button);
       break;
   }
 }
