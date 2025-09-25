@@ -43,7 +43,6 @@ const clearCalculator = () => {
 
 const printResult = () => {
   let stringResult = "";
-  result;
 
   if (calculator.result) {
     stringResult = calculator.result;
@@ -56,7 +55,7 @@ const printResult = () => {
   }
 
   clearHtml(digitDisplay);
-  result.innerHTML = stringResult;
+  evaluationDisplay.innerHTML = stringResult;
 };
 
 const hasNumberTyped = () => !!digitDisplay.innerHTML;
