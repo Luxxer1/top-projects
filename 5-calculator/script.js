@@ -51,45 +51,46 @@ const printResult = () => {
   result.innerHTML = stringResult;
 };
 
+const hasNumberTyped = () => !!display.innerHTML;
+
 const defineFirstNumber = () => {
   calculator.firstNumber = +display.innerText;
 };
 
-const defineOperator = (operator) => {
-  if (!calculator.operator) {
+const defineOperation = (operator) => {
+  // Change operator sign
+  if (calculator.firstNumber && !hasNumberTyped()) {
+    calculator.operator = operator;
+    return;
+  }
+
+  if (!calculator.operator && hasNumberTyped()) {
     calculator.operator = operator;
     defineFirstNumber();
     return;
   }
-
-  // Change operator sign
-  if (!display.innerText) {
-    calculator.operator = operator;
-    printResult();
-    clearHtml(display);
-    return;
-  }
-
-  if (resultCalculated) {
-    resultCalculated = undefined;
-    calculator.operator = operator;
-    calculator.firstNumber = +display.innerText;
-    result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-    clearHtml(display);
-  } else {
-    calculator.secondNumber = +display.innerText;
-    let [num1, op] = result.innerText.split(" ");
-    calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
-    calculator.operator = operator;
-    result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
-    clearHtml(display);
-  }
 };
+
+//   if (resultCalculated) {
+//     resultCalculated = undefined;
+//     calculator.operator = operator;
+//     calculator.firstNumber = +display.innerText;
+//     result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+//     clearHtml(display);
+//   } else {
+//     calculator.secondNumber = +display.innerText;
+//     let [num1, op] = result.innerText.split(" ");
+//     calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
+//     calculator.operator = operator;
+//     result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+//     clearHtml(display);
+//   }
+// };
 
 const evaluate = (button) => {
   switch (button.className) {
     case "operator":
-      defineOperator(button.innerText);
+      defineOperation(button.innerText);
       printResult();
       break;
 
