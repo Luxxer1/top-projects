@@ -1,6 +1,12 @@
 import { add, subtract, multiply, divide } from "./calculator.js";
+import { printNumber, clearHtml } from "./display.js";
 
-let operator, n1, n2, resultCalculated;
+const calculator = {
+  firstNumber: undefined,
+  secondNumber: undefined,
+  operator: undefined,
+  result: undefined,
+};
 
 const result = document.getElementById("result");
 const display = document.getElementById("display");
@@ -11,58 +17,65 @@ buttons.forEach((button) =>
   })
 );
 
-const clearDisplay = () => (display.innerHTML = "");
-
-const operate = (operate, n1, n2) => {
+const operate = (operate, firstNumber, secondNumber) => {
   switch (operate) {
     case "+":
-      return add(n1, n2);
+      return add(firstNumber, secondNumber);
 
     case "-":
-      return subtract(n1, n2);
+      return subtract(firstNumber, secondNumber);
 
     case "*":
-      return multiply(n1, n2);
+      return multiply(firstNumber, secondNumber);
 
     case "/":
-      return divide(n1, n2);
+      return divide(firstNumber, secondNumber);
+  }
+};
+
+const clearCalculator = () => {
+  clearHtml(display, result);
+  for (key in calculator) calculator[key] = undefined;
+};
+
+const checkOperator = (button) => {
+  if (!calculator.operator) {
+    calculator.firstNumber = +display.innerText;
+    calculator.operator = button.innerText;
+    result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+    clearHtml(display);
+  } else {
+    if (display.innerText == "") {
+      calculator.operator = button.innerText;
+      result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+      clearHtml(display);
+    } else {
+      if (resultCalculated) {
+        resultCalculated = undefined;
+        calculator.operator = button.innerText;
+        calculator.firstNumber = +display.innerText;
+        result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+        clearHtml(display);
+      } else {
+        calculator.secondNumber = +display.innerText;
+        let [num1, op] = result.innerText.split(" ");
+        calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
+        operator = button.innerText;
+        result.innerText = `${calculator.firstNumber} ${calculator.operator}`;
+        clearHtml(display);
+      }
+    }
   }
 };
 
 function refreshDisplay(button) {
   switch (button.className) {
     case "number":
-      display.innerText += button.innerText;
+      printNumber(button.innerText);
       break;
 
     case "operator":
-      if (!operator) {
-        n1 = +display.innerText;
-        operator = button.innerText;
-        result.innerText = `${n1} ${operator}`;
-        clearDisplay();
-      } else {
-        if (display.innerText == "") {
-          operator = button.innerText;
-          result.innerText = `${n1} ${operator}`;
-          clearDisplay();
-        } else {
-          if (resultCalculated) {
-            resultCalculated = undefined;
-            operator = button.innerText;
-            n1 = +display.innerText;
-            result.innerText = `${n1} ${operator}`;
-            clearDisplay();
-          } else {
-            n2 = +display.innerText;
-            let [num1, op] = result.innerText.split(" ");
-            n1 = operate(op, +num1, n2);
-            operator = button.innerText;
-            result.innerText = `${n1} ${operator}`;
-            clearDisplay();
-          }
-        }
-      }
+      checkOperator(button);
 
       break;
 
@@ -71,21 +84,16 @@ function refreshDisplay(button) {
         display.innerText = "Error, something is missing";
       } else {
         let [num1, op] = result.innerText.split(" ");
-        n2 = +display.innerText;
-        n1 = operate(op, +num1, n2);
-        resultCalculated = n1;
-        result.innerText = n1;
-        clearDisplay();
+        calculator.secondNumber = +display.innerText;
+        calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
+        calculator.result = calculator.firstNumber;
+        result.innerText = calculator.firstNumber;
+        clearHtml(display);
       }
       break;
 
     case "clear":
-      result.innerHTML = "";
-      clearDisplay();
-      n1 = undefined;
-      n2 = undefined;
-      operator = undefined;
-      resultCalculated = undefined;
+      clearCalculator();
       break;
   }
 }
