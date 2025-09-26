@@ -45,8 +45,12 @@ const clearCalculator = () => {
 const printEvaluation = () => {
   let stringResult = "";
 
+  clearHtml(digitDisplay);
+
   if (calculator.result) {
     stringResult = calculator.result;
+    resultDisplay.innerHTML = stringResult;
+    return;
   } else {
     for (let key in calculator) {
       if (calculator[key]) {
@@ -55,7 +59,6 @@ const printEvaluation = () => {
     }
   }
 
-  clearHtml(digitDisplay);
   evaluationDisplay.innerHTML = stringResult;
 };
 
@@ -63,6 +66,17 @@ const hasNumberTyped = () => !!digitDisplay.innerHTML;
 
 const defineNumber = (propName) => {
   calculator[propName] = +digitDisplay.innerText;
+};
+
+const calculate = () => {
+  const result = operate(
+    calculator.operator,
+    calculator.firstNumber,
+    calculator.secondNumber
+  );
+
+  clearCalculator();
+  return result;
 };
 
 const defineOperation = (operator) => {
@@ -76,18 +90,14 @@ const defineOperation = (operator) => {
     calculator.operator = operator;
     defineNumber(FIRSTNUMBER);
     return;
-  } else if (calculator.operator && hasNumberTyped()) {
+  } else if (
+    calculator.operator &&
+    calculator.firstNumber &&
+    hasNumberTyped()
+  ) {
     defineNumber(SECONDNUMBER);
     calculator.result = calculate();
   }
-};
-
-const calculate = () => {
-  const result = operate(
-    calculate.operator,
-    calculate.firstNumber,
-    calculate.secondNumber
-  );
 };
 
 const evaluate = (button) => {
@@ -98,16 +108,6 @@ const evaluate = (button) => {
       break;
 
     case "evaluate":
-      if (!result.innerText || !digitDisplay.innerText) {
-        digitDisplay.innerText = "Error, something is missing";
-      } else {
-        let [num1, op] = result.innerText.split(" ");
-        calculator.secondNumber = +digitDisplay.innerText;
-        calculator.firstNumber = operate(op, +num1, calculator.secondNumber);
-        calculator.result = calculator.firstNumber;
-        result.innerText = calculator.firstNumber;
-        clearHtml(digitDisplay);
-      }
       break;
   }
 };
