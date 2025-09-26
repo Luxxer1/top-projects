@@ -43,10 +43,14 @@ const clearCalculator = () => {
 };
 
 const printEvaluation = () => {
+  const invalidEvaluationMessage = "Invalid Calculation";
   let stringResult = "";
 
   clearHtml(digitDisplay);
 
+  if (!calculator.isValid) {
+    stringResult = invalidEvaluationMessage;
+  }
   if (calculator.result) {
     stringResult = calculator.result;
     resultDisplay.innerHTML = stringResult;
@@ -68,14 +72,28 @@ const defineNumber = (propName) => {
   calculator[propName] = +digitDisplay.innerText;
 };
 
+function checkValidEvaluation(operator = undefined) {
+  const divide = "/";
+  const zero = 0;
+
+  if (operator == divide && calculator.secondNumber == zero) {
+    // something here
+  }
+}
+
 const calculate = () => {
+  checkValidEvaluation();
+  // find a way to handle error
   const result = operate(
     calculator.operator,
     calculator.firstNumber,
     calculator.secondNumber
   );
 
-  clearCalculator();
+  if (calculator.operator == "=") {
+    clearCalculator();
+  }
+
   return result;
 };
 
@@ -96,7 +114,8 @@ const defineOperation = (operator) => {
     hasNumberTyped()
   ) {
     defineNumber(SECONDNUMBER);
-    calculator.result = calculate();
+    const calculateResult = calculate();
+    calculator.firstNumber = calculator.secondNumber = undefined;
   }
 };
 
@@ -104,6 +123,7 @@ const evaluate = (button) => {
   switch (button.className) {
     case "operator":
       defineOperation(button.innerText);
+      calculator.operator = button.innerText;
       printEvaluation();
       break;
 
