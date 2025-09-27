@@ -43,14 +43,10 @@ const clearCalculator = () => {
 };
 
 const printEvaluation = () => {
-  const invalidEvaluationMessage = "Invalid Calculation";
   let stringResult = "";
 
   clearHtml(digitDisplay);
 
-  if (!calculator.isValid) {
-    stringResult = invalidEvaluationMessage;
-  }
   if (calculator.result) {
     stringResult = calculator.result;
     resultDisplay.innerHTML = stringResult;
@@ -82,7 +78,7 @@ function checkValidEvaluation(operator = undefined) {
 }
 
 const calculate = () => {
-  checkValidEvaluation();
+  // checkValidEvaluation();
   // find a way to handle error
   const result = operate(
     calculator.operator,
@@ -114,8 +110,8 @@ const defineOperation = (operator) => {
     hasNumberTyped()
   ) {
     defineNumber(SECONDNUMBER);
-    const calculateResult = calculate();
-    calculator.firstNumber = calculator.secondNumber = undefined;
+    calculator.firstNumber = calculate();
+    calculator.secondNumber = undefined;
   }
 };
 
