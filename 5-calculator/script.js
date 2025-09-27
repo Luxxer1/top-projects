@@ -38,7 +38,7 @@ const operate = (operate, firstNumber, secondNumber) => {
 };
 
 const clearCalculator = () => {
-  clearHtml(digitDisplay, evaluationDisplay);
+  clearHtml(digitDisplay, evaluationDisplay, resultDisplay);
   for (let key in calculator) calculator[key] = undefined;
 };
 
@@ -46,8 +46,16 @@ const printEvaluation = () => {
   let stringResult = "";
 
   clearHtml(digitDisplay);
-
-  if (calculator.result) {
+  if (
+    !calculator.result &&
+    !calculator.firstNumber &&
+    !calculator.secondNumber
+  ) {
+    stringResult = "Can't divide by zero";
+    clearCalculator();
+    resultDisplay.innerHTML = stringResult;
+    return;
+  } else if (calculator.operator == "=" || calculator.result) {
     stringResult = calculator.result;
     resultDisplay.innerHTML = stringResult;
     return;
@@ -62,52 +70,52 @@ const printEvaluation = () => {
   evaluationDisplay.innerHTML = stringResult;
 };
 
-const hasNumberTyped = () => !!digitDisplay.innerHTML;
+const hasNumberTyped = (objectHtml) => !!objectHtml.innerHTML;
 
 const defineNumber = (propName) => {
   calculator[propName] = +digitDisplay.innerText;
 };
 
-function checkValidEvaluation(operator = undefined) {
+function checkDividedByZero() {
   const divide = "/";
   const zero = 0;
 
-  if (operator == divide && calculator.secondNumber == zero) {
-    // something here
+  if (calculator.operator == divide && calculator.secondNumber == zero) {
+    return true;
   }
+
+  return false;
 }
 
 const calculate = () => {
-  // checkValidEvaluation();
-  // find a way to handle error
+  if (checkDividedByZero()) {
+    calculator.operator = "=";
+  }
+
   const result = operate(
     calculator.operator,
     calculator.firstNumber,
     calculator.secondNumber
   );
 
-  if (calculator.operator == "=") {
-    clearCalculator();
-  }
-
   return result;
 };
 
 const defineOperation = (operator) => {
   // Change operator sign
-  if (calculator.firstNumber && !hasNumberTyped()) {
+  if (calculator.firstNumber && !hasNumberTyped(digitDisplay)) {
     calculator.operator = operator;
     return;
   }
 
-  if (!calculator.operator && hasNumberTyped()) {
+  if (!calculator.operator && hasNumberTyped(digitDisplay)) {
     calculator.operator = operator;
     defineNumber(FIRSTNUMBER);
     return;
   } else if (
     calculator.operator &&
     calculator.firstNumber &&
-    hasNumberTyped()
+    hasNumberTyped(digitDisplay)
   ) {
     defineNumber(SECONDNUMBER);
     calculator.firstNumber = calculate();
