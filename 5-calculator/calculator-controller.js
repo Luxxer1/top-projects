@@ -67,6 +67,17 @@ export class Calculator {
     return this.result;
   }
 
+  backspace() {
+    if (this.inputBuffer && this.inputBuffer.length > 0) {
+      this.inputBuffer = this.inputBuffer.slice(0, -1);
+    } else if (this.operator) {
+      this.operator = undefined;
+    } else if (this.firstNumber !== undefined) {
+      this.firstNumber =
+        parseFloat(this.firstNumber.toString().slice(0, -1)) || undefined;
+    }
+  }
+
   clear() {
     this.firstNumber = undefined;
     this.secondNumber = undefined;
