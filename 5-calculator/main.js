@@ -24,9 +24,26 @@ const appendDigit = (digit) => {
 };
 
 const appendOperator = (operator) => {
-  if (!calculator.operator) {
+  // Append negative operator to digit
+  if (
+    (!calculator.operator && !calculator.n1 && operator == "-") ||
+    (calculator.n1 &&
+      (calculator.operator == "/" || calculator.operator == "*") &&
+      operator == "-" &&
+      !calculator.n2)
+  ) {
+    appendDigit(operator);
+    return;
+  }
+
+  // Add operator to calculator
+  if (!calculator.operator && calculator.n1) {
     calculator.operator = operator;
-  } else if (calculator.n1 && calculator.operator && !calculator.n2) {
+    return;
+  }
+
+  // Change operator
+  if (calculator.n1 && calculator.operator && !calculator.n2) {
     calculator.operator = operator;
   }
 };
