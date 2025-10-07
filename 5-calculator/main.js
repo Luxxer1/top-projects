@@ -23,6 +23,16 @@ const appendDigit = (digit) => {
   }
 };
 
+const evaluate = () => {
+  if (calculator.n1 && calculator.n2 && calculator.operator) {
+    calculator.result = operate(
+      calculator.operator,
+      Number.parseFloat(calculator.n1),
+      Number.parseFloat(calculator.n2)
+    );
+  }
+};
+
 const appendOperator = (operator) => {
   // Append negative operator to digit
   if (
@@ -37,7 +47,7 @@ const appendOperator = (operator) => {
   }
 
   // Add operator to calculator
-  if (!calculator.operator && calculator.n1) {
+  if (!calculator.operator && parseFloat(calculator.n1)) {
     calculator.operator = operator;
     return;
   }
@@ -45,16 +55,13 @@ const appendOperator = (operator) => {
   // Change operator
   if (calculator.n1 && calculator.operator && !calculator.n2) {
     calculator.operator = operator;
+    return;
   }
-};
 
-const evaluate = () => {
-  if (calculator.n1 && calculator.n2 && calculator.operator) {
-    calculator.result = operate(
-      calculator.operator,
-      Number.parseFloat(calculator.n1),
-      Number.parseFloat(calculator.n2)
-    );
+  // Evaluate operation
+  if (calculator.n1 && calculator.operator && calculator.n2) {
+    evaluate();
+    return;
   }
 };
 
@@ -66,6 +73,7 @@ const identifyButton = (button) => {
 
     case "operator":
       appendOperator(button.innerText);
+      break;
 
     case "evaluator":
       evaluate();

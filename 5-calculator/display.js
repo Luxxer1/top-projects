@@ -6,14 +6,22 @@ export const clearDisplays = () => {
   resultDisplay.innerHTML = "";
 };
 
-export const updateDisplay = (calculator) => {
-  let stringEvaluation = "";
+const createDisplayString = (object) => {
+  let string = "";
 
-  for (let key in calculator) {
-    if (calculator[key]) {
-      stringEvaluation += `${calculator[key]} `;
+  for (let key in object) {
+    if (object[key]) {
+      string += `${object[key]} `;
     }
   }
 
-  evaluationDisplay.innerText = stringEvaluation;
+  return string;
+};
+
+export const updateDisplay = (calculator) => {
+  if (calculator.n1 && calculator.n2 && calculator.operator) {
+    resultDisplay.innerText = createDisplayString(calculator);
+  } else {
+    evaluationDisplay.innerText = createDisplayString(calculator);
+  }
 };
