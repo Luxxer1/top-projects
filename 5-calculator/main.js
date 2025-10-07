@@ -23,13 +23,26 @@ const appendDigit = (digit) => {
   }
 };
 
-const evaluate = () => {
-  if (calculator.n1 && calculator.n2 && calculator.operator) {
-    calculator.result = operate(
-      calculator.operator,
-      Number.parseFloat(calculator.n1),
-      Number.parseFloat(calculator.n2)
-    );
+const evaluate = (operator = "=") => {
+  if (operator != "=") {
+    if (calculator.n1 && calculator.n2 && calculator.operator) {
+      calculator.n1 = operate(
+        calculator.operator,
+        Number.parseFloat(calculator.n1),
+        Number.parseFloat(calculator.n2)
+      );
+    }
+
+    calculator.n2 = "";
+    calculator.operator = undefined;
+  } else {
+    if (calculator.n1 && calculator.n2 && calculator.operator) {
+      calculator.result = operate(
+        calculator.operator,
+        Number.parseFloat(calculator.n1),
+        Number.parseFloat(calculator.n2)
+      );
+    }
   }
 };
 
@@ -60,7 +73,7 @@ const appendOperator = (operator) => {
 
   // Evaluate operation
   if (calculator.n1 && calculator.operator && calculator.n2) {
-    evaluate();
+    evaluate(calculator.operator);
     return;
   }
 };
