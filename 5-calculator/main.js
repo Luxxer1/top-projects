@@ -1,7 +1,4 @@
-const evaluationDisplay = document.getElementById("evaluationDisplay");
-const resultDisplay = document.getElementById("resultDisplay");
-
-///////////////////////////////////////////////////////////////////////
+import { clearDisplays, appendDigit } from "./display.js";
 
 const calculator = {
   n1: undefined,
@@ -10,13 +7,8 @@ const calculator = {
   result: undefined,
 };
 
-const appendDigit = (digit) => {
-  evaluationDisplay.innerText += digit;
-};
-
 const clearCalculator = () => {
-  evaluationDisplay.innerText = "";
-  resultDisplay.innerText = "";
+  clearDisplays();
   for (let key in calculator) {
     calculator[key] = undefined;
   }
