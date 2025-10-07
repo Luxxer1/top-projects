@@ -19,8 +19,10 @@ const createDisplayString = (object) => {
 };
 
 export const updateDisplay = (calculator) => {
-  if (calculator.n1 && calculator.n2 && calculator.operator) {
-    resultDisplay.innerText = createDisplayString(calculator);
+  console.log(calculator);
+  if (calculator.result) {
+    resultDisplay.innerText = calculator.result;
+    evaluationDisplay.innerText = "";
   } else {
     evaluationDisplay.innerText = createDisplayString(calculator);
   }

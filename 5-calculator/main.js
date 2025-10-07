@@ -43,6 +43,10 @@ const evaluate = (operator = "=") => {
         Number.parseFloat(calculator.n2)
       );
     }
+
+    calculator.n1 = "";
+    calculator.n2 = "";
+    calculator.operator = undefined;
   }
 };
 
@@ -101,6 +105,9 @@ const identifyButton = (button) => {
   }
 
   updateDisplay(calculator);
+
+  // Handles behavior that prevents typing after calculation
+  calculator.result = undefined;
 };
 
 ///////////////////////////////////////////////////////////////////////
