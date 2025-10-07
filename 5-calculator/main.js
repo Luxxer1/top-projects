@@ -1,9 +1,10 @@
-import { clearDisplays, appendDigit } from "./display.js";
+import { clearDisplays, updateDisplay } from "./display.js";
+import { operate } from "./calculator-core.js";
 
 const calculator = {
-  n1: undefined,
-  n2: undefined,
+  n1: "",
   operator: undefined,
+  n2: "",
   result: undefined,
 };
 
@@ -14,10 +15,43 @@ const clearCalculator = () => {
   }
 };
 
+const appendDigit = (digit) => {
+  if (!calculator.operator) {
+    calculator.n1 += digit;
+  } else {
+    calculator.n2 += digit;
+  }
+};
+
+const appendOperator = (operator) => {
+  if (!calculator.operator) {
+    calculator.operator = operator;
+  } else if (calculator.n1 && calculator.operator && !calculator.n2) {
+    calculator.operator = operator;
+  }
+};
+
+const evaluate = () => {
+  if (calculator.n1 && calculator.n2 && calculator.operator) {
+    calculator.result = operate(
+      calculator.operator,
+      Number.parseFloat(calculator.n1),
+      Number.parseFloat(calculator.n2)
+    );
+  }
+};
+
 const identifyButton = (button) => {
   switch (button.className) {
     case "number":
       appendDigit(button.innerText);
+      break;
+
+    case "operator":
+      appendOperator(button.innerText);
+
+    case "evaluator":
+      evaluate();
       break;
 
     case "clear":
@@ -27,6 +61,8 @@ const identifyButton = (button) => {
     default:
       break;
   }
+
+  updateDisplay(calculator);
 };
 
 ///////////////////////////////////////////////////////////////////////

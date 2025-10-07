@@ -1,13 +1,13 @@
-export function operate(operator, a, b) {
+export function operate(operator, n1, n2) {
   switch (operator) {
     case "+":
-      return a + b;
+      return n1 + n2;
     case "-":
-      return a - b;
+      return n1 - n2;
     case "*":
-      return a * b;
+      return n1 * n2;
     case "/":
-      return b === 0 ? "Can' divide by zero" : a / b;
+      return n2 === 0 ? "Can' divide by zero" : n1 / n2;
     default:
       return undefined;
   }

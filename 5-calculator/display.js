@@ -6,6 +6,14 @@ export const clearDisplays = () => {
   resultDisplay.innerHTML = "";
 };
 
-export const appendDigit = (digit) => {
-  evaluationDisplay.innerText += digit;
+export const updateDisplay = (calculator) => {
+  let stringEvaluation = "";
+
+  for (let key in calculator) {
+    if (calculator[key]) {
+      stringEvaluation += `${calculator[key]} `;
+    }
+  }
+
+  evaluationDisplay.innerText = stringEvaluation;
 };
