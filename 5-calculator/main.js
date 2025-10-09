@@ -10,9 +10,10 @@ const calculator = {
 
 const clearCalculator = () => {
   clearDisplays();
-  for (let key in calculator) {
-    calculator[key] = undefined;
-  }
+  calculator.n1 = "";
+  calculator.n2 = "";
+  calculator.operator = undefined;
+  calculator.result = undefined;
 };
 
 const appendDigit = (digit) => {
