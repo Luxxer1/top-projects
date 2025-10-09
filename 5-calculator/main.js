@@ -88,6 +88,20 @@ const appendOperator = (operator) => {
   }
 };
 
+const deleteLastDigit = (value) => {
+  return value.slice(0, -1);
+};
+
+const handleBackspace = () => {
+  if (calculator.n2) {
+    calculator.n2 = deleteLastDigit(calculator.n2);
+  } else if (calculator.operator) {
+    calculator.operator = deleteLastDigit(calculator.operator);
+  } else if (calculator.n1) {
+    calculator.n1 = deleteLastDigit(calculator.n1);
+  }
+};
+
 const identifyButton = (button) => {
   switch (button.className) {
     case "number":
@@ -108,6 +122,10 @@ const identifyButton = (button) => {
 
     case "clear":
       clearCalculator();
+      break;
+
+    case "backspace":
+      handleBackspace();
       break;
 
     default:
