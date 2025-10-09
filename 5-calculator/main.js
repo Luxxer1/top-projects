@@ -16,11 +16,17 @@ const clearCalculator = () => {
   calculator.result = undefined;
 };
 
+const canAppendDot = (...value) => {
+  const dot = ".";
+
+  return !value.every((v) => v.includes(dot));
+};
+
 const appendDigit = (digit) => {
   if (!calculator.operator) {
-    calculator.n1 += digit;
+    canAppendDot(calculator.n1, digit) ? (calculator.n1 += digit) : "";
   } else {
-    calculator.n2 += digit;
+    canAppendDot(calculator.n2, digit) ? (calculator.n2 += digit) : "";
   }
 };
 
@@ -85,6 +91,10 @@ const appendOperator = (operator) => {
 const identifyButton = (button) => {
   switch (button.className) {
     case "number":
+      appendDigit(button.innerText);
+      break;
+
+    case "dot":
       appendDigit(button.innerText);
       break;
 
