@@ -32,9 +32,6 @@ const evaluate = (operator = "=") => {
         Number.parseFloat(calculator.n2)
       );
     }
-
-    calculator.n2 = "";
-    calculator.operator = undefined;
   } else {
     if (calculator.n1 && calculator.n2 && calculator.operator) {
       calculator.result = operate(
@@ -76,8 +73,10 @@ const appendOperator = (operator) => {
   }
 
   // Evaluate operation
-  if (calculator.n1 && calculator.operator && calculator.n2) {
+  if (calculator.n1 && calculator.operator && parseFloat(calculator.n2)) {
     evaluate(calculator.operator);
+    calculator.n2 = "";
+    calculator.operator = operator;
     return;
   }
 };
