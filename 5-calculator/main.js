@@ -39,11 +39,11 @@ const evaluate = (operator = "=") => {
         Number.parseFloat(calculator.n1),
         Number.parseFloat(calculator.n2)
       );
-    }
 
-    calculator.n1 = "";
-    calculator.n2 = "";
-    calculator.operator = undefined;
+      calculator.n1 = "";
+      calculator.n2 = "";
+      calculator.operator = undefined;
+    }
   }
 };
 
