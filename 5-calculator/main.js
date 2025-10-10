@@ -143,6 +143,5 @@ const identifyButton = (button) => {
 document.querySelectorAll("button").forEach((button) => {
   const handle = () => identifyButton(button);
 
-  button.addEventListener("click", handle);
-  button.addEventListener("touchstart", handle);
+  button.addEventListener("pointerdown", handle);
 });
