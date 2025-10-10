@@ -141,7 +141,8 @@ const identifyButton = (button) => {
 ///////////////////////////////////////////////////////////////////////
 
 document.querySelectorAll("button").forEach((button) => {
-  button.addEventListener("click", () => {
-    identifyButton(button);
-  });
+  const handle = () => identifyButton(button);
+
+  button.addEventListener("click", handle);
+  button.addEventListener("touchstart", handle);
 });
