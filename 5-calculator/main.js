@@ -140,7 +140,7 @@ const identifyButton = (button) => {
 
 ///////////////////////////////////////////////////////////////////////
 
-document.querySelectorAll("#calculator > button").forEach((button) => {
+document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => {
     identifyButton(button);
   });
