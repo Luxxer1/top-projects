@@ -40,7 +40,7 @@ const evaluate = (operator = "=") => {
       );
     }
   } else {
-    if (calculator.n1 && parseFloat(calculator.n2) && calculator.operator) {
+    if (calculator.n1 && calculator.n2 && calculator.operator) {
       calculator.result = operate(
         calculator.operator,
         Number.parseFloat(calculator.n1),
