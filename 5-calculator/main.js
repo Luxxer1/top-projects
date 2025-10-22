@@ -142,6 +142,8 @@ const identifyButton = (button) => {
 
 document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
     identifyButton(button);
+    button.blur();
   });
 });

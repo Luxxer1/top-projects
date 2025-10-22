@@ -87,6 +87,7 @@ button {
   font-weight: 4500;
   box-shadow: 2px 2px 5px rgba(63, 48, 28, 0.5);
   color: #2b1b0e;
+  outline: none;
 }
 
 button:hover {
