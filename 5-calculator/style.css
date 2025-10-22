@@ -16,7 +16,7 @@ body {
   margin: auto;
   width: 800px;
   max-width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,9 +25,9 @@ body {
 }
 
 header {
-  display: flex;
-  width: 100%;
   padding: 20px;
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: yellow;
@@ -35,12 +35,10 @@ header {
 
 section {
   background-color: blue;
-  aspect-ratio: 2/3;
-  max-height: 80%;
+  aspect-ratio: 1 / 2;
+  width: 90vw;
 }
 
 footer {
-  background-color: green;
-  height: 2.5rem;
-  width: 100%;
+  background-color: lightgreen;
 }
