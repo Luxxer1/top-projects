@@ -35,9 +35,8 @@ header {
 
 section {
   background-color: blue;
-  width: 350px;
-  max-width: 90vw;
-  height: 550px;
+  aspect-ratio: 2/3;
+  max-height: 80%;
 }
 
 footer {
