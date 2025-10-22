@@ -75,8 +75,7 @@ section {
 
 hr {
   border: 2px solid rgba(63, 48, 28, 0.7);
-  margin-left: -20px;
-  margin-right: -20px;
+  margin: 0 -20px 30px -20px;
 }
 
 button {
