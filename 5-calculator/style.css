@@ -35,9 +35,9 @@ header {
 section {
   border-radius: 9px;
   box-shadow: 0 12px 30px rgba(43, 27, 14, 0.45);
-  aspect-ratio: 1 / 2;
   width: 90vw;
   padding: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
