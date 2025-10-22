@@ -30,6 +30,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 1.3rem;
   background-color: yellow;
 }
 
@@ -37,8 +38,46 @@ section {
   background-color: blue;
   aspect-ratio: 1 / 2;
   width: 90vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.theme {
+  background-color: pink;
+  height: 2rem;
+}
+
+.display {
+  height: 5rem;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.bigButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.bigButtons button {
+  aspect-ratio: 2.5/1;
+  width: calc(50% - 0.5rem);
+}
+
+.smallButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.smallButtons button {
+  aspect-ratio: 1/1;
+  width: calc(25% - 0.75rem);
 }
 
 footer {
   background-color: lightgreen;
+  height: 2rem;
+  width: 100%;
 }
