@@ -10,6 +10,7 @@ body {
   height: 100vh;
   font-family: "Noto Sans", sans-serif;
   font-optical-sizing: auto;
+  background-color: #fefae0;
 }
 
 .container {
@@ -28,19 +29,19 @@ header {
   width: 100%;
   font-size: 1.5rem;
   text-align: center;
-  color: #3e2f1c;
+  color: #48512c;
 }
 
 section {
-  border: 1px solid black;
   border-radius: 9px;
+  box-shadow: 0 12px 30px rgba(43, 27, 14, 0.45);
   aspect-ratio: 1 / 2;
   width: 90vw;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  background-color: #fff0d2;
+  background-color: #ffefdd;
 }
 
 .theme {
@@ -60,6 +61,7 @@ section {
 }
 
 .display:nth-child(1) {
+  margin-top: -40px;
   height: 6rem;
   font-size: 3rem;
   font-weight: 900;
@@ -85,8 +87,7 @@ button {
   font-size: 2rem;
   font-weight: 4500;
   box-shadow: 2px 2px 5px rgba(63, 48, 28, 0.5);
-  transition: box-shadow 0.5s ease;
-  color: #3a2a16;
+  color: #2b1b0e;
 }
 
 button:hover {
@@ -125,15 +126,20 @@ button:hover {
 
 .operator,
 .backspace {
-  background-color: #f4b467;
+  background-color: #dda15e;
+}
+
+.evaluator,
+.clear {
+  font-weight: 600;
 }
 
 .evaluator {
-  background-color: #f9a825;
+  background-color: #ffc465;
 }
 
 .clear {
-  background-color: #e68a00;
+  background-color: #bc6c25;
 }
 
 footer {
