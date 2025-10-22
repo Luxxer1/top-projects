@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: "Cascadia Mono", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.container {
+  margin: auto;
+  width: 800px;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: red;
+}
+
+.container:nth-child(3) {
+  align-self: flex-start;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section {
+  background-color: blue;
+  width: 350px;
+  height: 550px;
+}
+
+footer {
+  background-color: green;
+  height: 2.5rem;
+  width: 100%;
+}
