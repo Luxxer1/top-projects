@@ -78,7 +78,7 @@ hr {
   margin: 0 -20px 30px -20px;
 }
 
-button {
+/* button {
   all: unset;
   cursor: pointer;
   text-align: center;
@@ -92,6 +92,28 @@ button {
 
 button:hover {
   box-shadow: 2px 2px 5px rgb(63, 48, 28);
+} */
+
+.button {
+  cursor: pointer;
+  border-radius: 7px;
+  font-size: 2rem;
+  box-shadow: 2px 2px 5px rgba(63, 48, 28, 0.5);
+  color: #2b1b0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.button:active {
+  transform: scale(0.96);
+  box-shadow: inset 2px 2px 5px rgba(63, 48, 28, 0.5);
+  filter: brightness(0.9);
+}
+
+.button:hover {
+  box-shadow: 2px 2px 5px rgb(63, 48, 28);
 }
 
 .bigButtons {
@@ -99,7 +121,7 @@ button:hover {
   gap: 1rem;
 }
 
-.bigButtons button {
+.bigButtons .button {
   aspect-ratio: 2.5/1;
   width: calc(50% - 0.5rem);
 }
@@ -110,7 +132,7 @@ button:hover {
   gap: 1rem;
 }
 
-.smallButtons button {
+.smallButtons .button {
   aspect-ratio: 1/1;
   width: calc(25% - 0.75rem);
 }
@@ -121,12 +143,20 @@ button:hover {
 
 .number:active,
 .dot:active {
-  background-color: #f4d49b;
+  background-color: #f0c87a;
+  box-shadow: inset 2px 2px 4px rgba(63, 48, 28, 0.4);
 }
 
 .operator,
 .backspace {
   background-color: #dda15e;
+  filter: brightness(1.1);
+}
+
+.operator:active,
+.backspace:active {
+  background-color: #c58442;
+  color: #2b1b0e;
 }
 
 .evaluator,
@@ -138,8 +168,26 @@ button:hover {
   background-color: #ffc465;
 }
 
+.evaluator:hover {
+  filter: brightness(1.15);
+}
+
+.evaluator:active {
+  background-color: #f4b942;
+  box-shadow: inset 2px 2px 6px rgba(63, 48, 28, 0.4);
+}
+
 .clear {
   background-color: #bc6c25;
+}
+
+.clear:hover {
+  filter: brightness(1.1);
+}
+
+.clear:active {
+  background-color: #99531d;
+  box-shadow: inset 2px 2px 5px rgba(43, 27, 14, 0.4);
 }
 
 footer {
