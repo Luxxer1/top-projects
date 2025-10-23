@@ -4,6 +4,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -11,13 +14,15 @@ body {
   font-family: "Noto Sans", sans-serif;
   font-optical-sizing: auto;
   background-color: #fefae0;
+  height: 100dvh;
+  max-height: 100dvh;
 }
 
 .container {
   margin: auto;
   width: 800px;
   max-width: 100vw;
-  height: 100dvh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
