@@ -159,8 +159,14 @@ const identifyButton = (button) => {
 ///////////////////////////////////////////////////////////////////////
 
 document.querySelectorAll(".button").forEach((button) => {
-  button.addEventListener("pointerdown", (e) => {
+  button.addEventListener("pointerdown", () => {
+    button.classList.add("pressed");
     identifyButton(button);
-    button.blur();
   });
+
+  const release = () => button.classList.remove("pressed");
+
+  button.addEventListener("pointerup", release);
+  button.addEventListener("pointercancel", release);
+  button.addEventListener("pointerout", release);
 });
