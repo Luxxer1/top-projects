@@ -1,18 +1,26 @@
 :root {
   --radius-padding: 8px;
   --operator-size: 1.5rem;
-  --sand-light: #fefae0;
-  --sand-dark: #e9e2c4;
-  --beige: #ffefdd;
-  --brown-deep: #2b1b0e;
   --shadow-brown: rgba(63, 48, 28, 0.5);
-  --orange-earth: #dda15e;
-  --orange-deep: #c58442;
-  --terracotta: #bc6c25;
-  --terracotta-dark: #99531d;
-  --yellow-earth: #ffc465;
-  --yellow-deep: #f4b942;
-  --olive: #48512c;
+
+  --calculator-background: #f0d6c1;
+  --display-background: #f7f3e8;
+  --numeric-background: #f0e0d0;
+  --operator-background: #d69264;
+  --evaluator-background: #9aa16b;
+  --clear-background: #c37a67;
+
+  --numeric-hover: #e8cfae;
+  --numeric-active: #e0b991;
+
+  --operator-hover: #e2a377;
+  --operator-active: #c9784d;
+
+  --evaluator-hover: #aab97b;
+  --evaluator-active: #879050;
+
+  --clear-hover: #d16f5a;
+  --clear-active: #b55644;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
@@ -64,7 +72,7 @@ section {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  background-color: var(--beige);
+  background-color: var(--calculator-background);
   box-shadow: 0 15px 35px rgba(43, 27, 14, 0.35);
   border: 1px solid rgba(63, 48, 28, 0.1);
   border-radius: var(--radius-padding);
@@ -77,19 +85,22 @@ section {
 .displays {
   width: 100%;
   border-radius: 7px;
+  box-shadow: 0 0 10px rgba(43, 27, 14, 0.15);
+  border: 1px solid rgba(63, 48, 28, 0.1);
 }
 
 .display {
-  border: 1px solid black;
-  background: linear-gradient(180deg, #fdf6eb, #f6e3cb);
+  background-color: var(--display-background);
   word-break: break-all;
   padding: 8px;
   display: flex;
   align-items: center;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .display:nth-of-type(1) {
+  font-size: 1.2rem;
+  font-weight: 500;
   min-height: calc(3rem + var(--radius-padding));
   border-radius: var(--radius-padding) var(--radius-padding) 0 0;
 }
@@ -112,6 +123,7 @@ section {
   font-size: 1.2rem;
   font-weight: 600;
   transition: all 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -127,47 +139,61 @@ section {
   box-shadow: inset 2px 2px 5px rgba(63, 48, 28, 0.5);
 }
 
-.number {
-  background-color: #f8e1b5;
+.number,
+.dot {
+  background-color: var(--numeric-background);
 }
 
-.number:hover {
-  background-color: #f6d799;
+.number:hover,
+.dot:hover {
+  background-color: var(--numeric-hover);
 }
 
-.number:active {
-  background-color: #f3c772;
+.number:active,
+.dot:active {
+  background-color: var(--numeric-active);
 }
 
 .operator,
 .backspace {
-  background-color: var(--orange-earth);
+  background-color: var(--operator-background);
   color: var(--brown-deep);
   font-size: var(--operator-size);
 }
 
 .operator:hover,
 .backspace:hover {
-  background-color: #e6a76b;
+  background-color: var(--operator-hover);
 }
 
 .operator:active,
 .backspace:active {
-  background-color: var(--orange-deep);
+  background-color: var(--operator-active);
 }
 
 .evaluator {
-  background: linear-gradient(180deg, var(--yellow-earth), var(--yellow-deep));
-  color: var(--brown-deep);
+  background: var(--evaluator-background);
+}
+
+.evaluator:hover {
+  background-color: var(--evaluator-hover);
+}
+
+.evaluator:active {
+  background-color: var(--evaluator-active);
 }
 
 .clear {
-  background: linear-gradient(
-    180deg,
-    var(--terracotta),
-    var(--terracotta-dark)
-  );
+  background: var(--clear-background);
   color: #fffdf8;
+}
+
+.clear:hover {
+  background-color: var(--clear-hover);
+}
+
+.clear:active {
+  background-color: var(--clear-active);
 }
 
 .clear,
