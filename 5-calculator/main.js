@@ -1,6 +1,8 @@
 import { clearDisplays, updateDisplay } from "./display.js";
 import { operate } from "./calculator-core.js";
 
+document.addEventListener("touchstart", () => {}, { passive: true });
+
 const calculator = {
   n1: "",
   operator: undefined,
