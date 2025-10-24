@@ -116,6 +116,8 @@ const identifyClassName = (button) => {
   if (button.classList.contains("dot")) return "dot";
   if (button.classList.contains("operator")) return "operator";
   if (button.classList.contains("evaluator")) return "evaluator";
+  if (button.classList.contains("clear")) return "clear";
+  if (button.classList.contains("backspace")) return "backspace";
 };
 
 const identifyButton = (button) => {
