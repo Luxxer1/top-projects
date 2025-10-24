@@ -102,8 +102,17 @@ const handleBackspace = () => {
   }
 };
 
+const identifyClassName = (button) => {
+  if (button.classList.contains("number")) return "number";
+  if (button.classList.contains("dot")) return "dot";
+  if (button.classList.contains("operator")) return "operator";
+  if (button.classList.contains("evaluator")) return "evaluator";
+};
+
 const identifyButton = (button) => {
-  switch (button.className) {
+  const className = identifyClassName(button);
+
+  switch (className) {
     case "number":
       appendDigit(button.innerText);
       break;
@@ -140,10 +149,8 @@ const identifyButton = (button) => {
 
 ///////////////////////////////////////////////////////////////////////
 
-document.querySelectorAll("button").forEach((button) => {
-  button.addEventListener("pointerdown", (e) => {
-    e.preventDefault();
+document.querySelectorAll(".button").forEach((button) => {
+  button.addEventListener("click", () => {
     identifyButton(button);
-    button.blur();
   });
 });
