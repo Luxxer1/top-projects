@@ -250,27 +250,3 @@ footer {
   position: absolute;
   bottom: 0;
 }
-
-.button.pressed {
-  transform: scale(0.95);
-  box-shadow: inset 2px 2px 5px var(--shadow-brown);
-  filter: brightness(0.95);
-}
-
-.number.pressed,
-.dot.pressed {
-  background-color: var(--numeric-active);
-}
-
-.operator.pressed,
-.backspace.pressed {
-  background-color: var(--operator-active);
-}
-
-.evaluator.pressed {
-  background-color: var(--evaluator-active);
-}
-
-.clear.pressed {
-  background-color: var(--clear-active);
-}
