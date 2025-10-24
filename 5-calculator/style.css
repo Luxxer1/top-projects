@@ -149,10 +149,10 @@ section {
   background-color: var(--numeric-hover);
 }
 
-.number:active,
+/* .number:active,
 .dot:active {
   background-color: var(--numeric-active);
-}
+} */
 
 .operator,
 .backspace {
@@ -166,10 +166,10 @@ section {
   background-color: var(--operator-hover);
 }
 
-.operator:active,
+/* .operator:active,
 .backspace:active {
   background-color: var(--operator-active);
-}
+} */
 
 .evaluator {
   background: var(--evaluator-background);
@@ -179,9 +179,9 @@ section {
   background-color: var(--evaluator-hover);
 }
 
-.evaluator:active {
+/* .evaluator:active {
   background-color: var(--evaluator-active);
-}
+} */
 
 .clear {
   background: var(--clear-background);
@@ -192,9 +192,9 @@ section {
   background-color: var(--clear-hover);
 }
 
-.clear:active {
+/* .clear:active {
   background-color: var(--clear-active);
-}
+} */
 
 .clear,
 .evaluator {
