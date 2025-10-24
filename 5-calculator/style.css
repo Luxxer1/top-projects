@@ -38,6 +38,12 @@
     transform 0.1s ease;
 }
 
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: "Noto Sans", sans-serif;
   padding: 20px;
