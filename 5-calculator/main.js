@@ -1,7 +1,14 @@
 import { clearDisplays, updateDisplay } from "./display.js";
 import { operate } from "./calculator-core.js";
 
-document.addEventListener("touchstart", () => {}, { passive: true });
+const blurActiveElement = () => {
+  const el = document.activeElement;
+  if (el && el !== document.body) el.blur();
+};
+
+document.addEventListener("touchend", blurActiveElement, { passive: true });
+document.addEventListener("touchcancel", blurActiveElement, { passive: true });
+document.addEventListener("pointerup", blurActiveElement);
 
 const calculator = {
   n1: "",
