@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playwrite+AU+TAS:wght@100..400&display=swap");
+
 :root {
   --radius-padding: 8px;
   --operator-size: 1.5rem;
@@ -25,8 +27,6 @@
   --terracotta: #e35336;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -46,7 +46,6 @@ body {
     var(--sand-light) 0%,
     var(--sand-dark) 100%
   );
-  color: var(--brown-deep);
 }
 
 .container {
@@ -60,8 +59,11 @@ body {
 header {
   text-align: center;
   letter-spacing: 1px;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  font-family: "Playwrite AU TAS", cursive;
+  font-size: 1.3rem;
   font-weight: 800;
+  color: #a65d47;
+  text-shadow: 2px 3px 6px rgba(43, 27, 14, 0.5);
 }
 
 section {
