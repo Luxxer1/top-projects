@@ -241,7 +241,7 @@ a:hover {
 }
 
 footer {
-  font-size: 1.1rem;
+  text-align: center;
 }
 
 @media (min-width: 599px) {
@@ -271,7 +271,4 @@ footer {
 }
 
 @media (max-width: 409px) {
-  footer p {
-    text-align: center;
-  }
 }
