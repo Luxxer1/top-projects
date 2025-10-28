@@ -269,3 +269,9 @@ footer {
     margin-bottom: 1.5rem;
   }
 }
+
+@media (max-width: 409px) {
+  footer p {
+    text-align: center;
+  }
+}
