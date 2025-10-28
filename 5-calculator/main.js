@@ -160,8 +160,34 @@ const identifyButton = (button) => {
 
 ///////////////////////////////////////////////////////////////////////
 
+const allowedKeys = {
+  number: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  dot: ["."],
+  operator: ["*", "+", "-", "/"],
+  evaluator: ["=", "Enter"],
+  clear: [" "],
+  backspace: ["Backspace"],
+};
+
+const identifyKeyPressed = (key) => {
+  for (const prop in allowedKeys) {
+    if (allowedKeys[prop].includes(key)) {
+      return { type: prop, value: key };
+    }
+  }
+};
+
 document.querySelectorAll(".button").forEach((button) => {
-  button.addEventListener("pointerdown", () => {
+  button.addEventListener("pointerdown", (e) => {
     identifyButton(button);
   });
+});
+
+document.addEventListener("keydown", (e) => {
+  console.log(e);
+  const keyDiv = document.createElement("div");
+  const keyValues = identifyKeyPressed(e.key);
+  keyDiv.className = keyValues.type;
+  keyDiv.innerText = keyValues.value;
+  identifyButton(keyDiv);
 });
