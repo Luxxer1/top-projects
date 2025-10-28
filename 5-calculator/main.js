@@ -184,7 +184,6 @@ document.querySelectorAll(".button").forEach((button) => {
 });
 
 document.addEventListener("keydown", (e) => {
-  console.log(e);
   const keyDiv = document.createElement("div");
   const keyValues = identifyKeyPressed(e.key);
   keyDiv.className = keyValues.type;

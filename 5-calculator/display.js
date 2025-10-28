@@ -19,7 +19,6 @@ const createDisplayString = (object) => {
 };
 
 export const updateDisplay = (calculator) => {
-  console.log(calculator);
   if (calculator.result) {
     resultDisplay.innerText = calculator.result;
     evaluationDisplay.innerText = "";
